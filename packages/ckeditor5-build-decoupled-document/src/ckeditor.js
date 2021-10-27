@@ -34,14 +34,16 @@ import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import ListStyle from '@ckeditor/ckeditor5-list/src/liststyle';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
-import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+import { Paragraph } from 'ckeditor5/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
-import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import { TextTransformation } from 'ckeditor5/src/typing';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+// import { SimpleUploadAdapter } from 'ckeditor5/src/upload';
+// import Uploader from './uploader';
 
-export default class DecoupledEditor extends DecoupledEditorBase {}
+export default class DecoupledEditor extends DecoupledEditorBase { }
 
 // Plugins to include in the build.
 DecoupledEditor.builtinPlugins = [
@@ -78,7 +80,9 @@ DecoupledEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	// Uploader,
+	// SimpleUploadAdapter
 ];
 
 // Editor configuration.
@@ -107,7 +111,7 @@ DecoupledEditor.defaultConfig = {
 			'|',
 			'link',
 			'blockquote',
-			'uploadImage',
+			'insertFileAndImage',
 			'insertTable',
 			'mediaEmbed',
 			'|',
@@ -133,6 +137,14 @@ DecoupledEditor.defaultConfig = {
 			'mergeTableCells'
 		]
 	},
+	// simpleUpload: {
+	// 	uploadUrl: '/uploadFile',
+	// 	withCredentials: true,
+	// 	headers: {
+	// 		'upload-folder': 'root',
+	// 		'upload-editor': ''
+	// 	}
+	// },
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };

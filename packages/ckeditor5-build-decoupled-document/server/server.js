@@ -14,21 +14,16 @@ const router = new Router();
 
 router.post('/uploadFile', async (ctx, next) => {
     const { file, editor } = await upload_file(ctx);
+
     ctx.body = {
         urls: {
-            default: '/download/' + file,
+            default: 'http://localhost:4001/' + file,
             editor
         }
     };
 });
 
-router.get('/download/:name*', async ctx => {
-    const name = ctx.params.name;
-    const filePath = path.join(_UPLOAD_PATH, name);
-
-    ctx.attachment(name);
-    await send(ctx, filePath);
-});
+app.use(serve('./upload_file'));
 
 app.use(serve(_UPLOAD_PATH));
 app.use(koaBody({ multipart: true }))

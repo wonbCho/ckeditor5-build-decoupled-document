@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
@@ -40,8 +41,8 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import { TextTransformation } from 'ckeditor5/src/typing';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
-// import { SimpleUploadAdapter } from 'ckeditor5/src/upload';
-// import Uploader from './uploader';
+import { SimpleUploadAdapter } from 'ckeditor5/src/upload';
+import Uploader from './uploader';
 
 export default class DecoupledEditor extends DecoupledEditorBase { }
 
@@ -81,8 +82,8 @@ DecoupledEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	// Uploader,
-	// SimpleUploadAdapter
+	Uploader,
+	SimpleUploadAdapter
 ];
 
 // Editor configuration.
@@ -128,7 +129,8 @@ DecoupledEditor.defaultConfig = {
 			'|',
 			'toggleImageCaption',
 			'imageTextAlternative'
-		]
+		],
+		type: ['jpeg', 'jpg', 'gif', 'png']
 	},
 	table: {
 		contentToolbar: [
@@ -137,14 +139,14 @@ DecoupledEditor.defaultConfig = {
 			'mergeTableCells'
 		]
 	},
-	// simpleUpload: {
-	// 	uploadUrl: '/uploadFile',
-	// 	withCredentials: true,
-	// 	headers: {
-	// 		'upload-folder': 'root',
-	// 		'upload-editor': ''
-	// 	}
-	// },
+	simpleUpload: {
+		uploadUrl: '/uploadFile',
+		withCredentials: true,
+		headers: {
+			'upload-folder': 'Test',
+			'upload-editor': 'bloodseeker'
+		}
+	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };

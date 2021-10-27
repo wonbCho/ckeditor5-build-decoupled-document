@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const fs = require("fs");
 const path = require("path");
 const _ = require("lodash");
@@ -9,7 +11,6 @@ fs.mkdirSync(_UPLOAD_PATH, { recursive: true });
 
 const upload_file = async (ctx) => {
   const file = ctx.request.files.upload;
-  console.log(file)
   const buf = await fs.promises.readFile(file.path);
   const hash = md5(buf);
 

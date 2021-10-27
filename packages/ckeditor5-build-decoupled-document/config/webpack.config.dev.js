@@ -12,10 +12,9 @@ module.exports = {
 			disableDotRule: true
 		},
 		open: true,
-		// disableHostCheck: true,
 		proxy: {
-			'/api/': {
-				target: 'https://jsonplaceholder.typicode.com/',
+			'/uploadFile': {
+				target: 'http://localhost:4001',
 				changeOrigin: true,
 			},
 		}

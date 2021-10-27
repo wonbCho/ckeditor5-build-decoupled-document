@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import { Plugin } from 'ckeditor5/src/core';
 import { FileDialogButtonView } from 'ckeditor5/src/upload';
+import imageIcon from "@ckeditor/ckeditor5-core/theme/icons/image.svg";
 
 const createImageTypeRegExp = types => {
   // Sanitize the MIME type name which may include: "+", "-" or ".".
@@ -19,6 +20,12 @@ class Uploader extends Plugin {
       const view = new FileDialogButtonView(locale);
       const imageTypes = editor.config.get('image.type');
       const imageTypesRegExp = createImageTypeRegExp(imageTypes);
+
+      view.buttonView.set({
+        label: "Insert image and file",
+        icon: imageIcon,
+        tooltip: true,
+      });
 
       // 사용자가 upload할 file/image를 선택 시 done event가 발생함.
       view.on('done', (evt, files) => {
